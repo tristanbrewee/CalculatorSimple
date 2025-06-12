@@ -36,10 +36,12 @@ public class MainWindow {
         Add the TextArea to the top center
          */
         JPanel topPanel = new JPanel();
-        topPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 15));
+        topPanel.setLayout(new BorderLayout(15, 15));
 
         TextArea textArea = new TextArea();
         textArea.setEditable(false);
+        textArea.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 15));
+        textArea.setText("123 * 25.6 = 3"); //TODO: Delete later (placeholder)
         topPanel.add(textArea);
 
         window.add(topPanel, BorderLayout.NORTH);
