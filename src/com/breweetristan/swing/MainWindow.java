@@ -2,8 +2,10 @@ package com.breweetristan.swing;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MainWindow {
+public class MainWindow implements ActionListener {
 
     private JFrame window;
 
@@ -41,7 +43,6 @@ public class MainWindow {
         TextArea textArea = new TextArea();
         textArea.setEditable(false);
         textArea.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 15));
-        textArea.setText("123 * 25.6 = 3"); //TODO: Delete later (placeholder)
         topPanel.add(textArea);
 
         window.add(topPanel, BorderLayout.NORTH);
@@ -56,7 +57,10 @@ public class MainWindow {
 
         window.add(centerPanel, BorderLayout.CENTER);
     }
+
     /*
+    Create the JButtons
+    Add their ActionListeners
     Add the JButtons to the centerPanel
      */
     private void addButtons(JPanel centerPanel){
@@ -76,6 +80,26 @@ public class MainWindow {
         JButton btnSubtract = new JButton("-");
         JButton btnMultiply = new JButton("*");
         JButton btnDivide = new JButton("/");
+
+        btnOne.addActionListener(this);
+        btnTwo.addActionListener(this);
+        btnThree.addActionListener(this);
+        btnFour.addActionListener(this);
+        btnFive.addActionListener(this);
+        btnSix.addActionListener(this);
+        btnSeven.addActionListener(this);
+        btnEight.addActionListener(this);
+        btnNine.addActionListener(this);
+        btnZero.addActionListener(this);
+        btnDot.addActionListener(this);
+        btnAdd.addActionListener(this);
+        btnSubtract.addActionListener(this);
+        btnMultiply.addActionListener(this);
+        btnDivide.addActionListener(this);
+
+        /*
+        The equals button needs its own ActionListener
+         */
 
         centerPanel.add(btnOne);
         centerPanel.add(btnTwo);
@@ -100,5 +124,15 @@ public class MainWindow {
      */
     public void show(){
         window.setVisible(true);
+    }
+
+    /*
+    This method is called when a button is clicked (except the "equals" button)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton source = (JButton)(e.getSource());
+        TextArea txtArea = (TextArea)(window.getContentPane().getComponent(0).getComponentAt(0, 0));
+        txtArea.setText(txtArea.getText() + source.getText());
     }
 }
