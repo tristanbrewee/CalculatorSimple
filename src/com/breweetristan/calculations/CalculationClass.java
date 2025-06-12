@@ -4,6 +4,10 @@ import com.breweetristan.exceptions.NotAnOperationException;
 
 public class CalculationClass {
 
+    public static String start(String calculation){
+        return calculation;
+    }
+
     /*
     This method performs the operation requested (char operation) from number1 to number2
     It catches possible incorrect input which leads to number1 or number2 not being a number

@@ -1,5 +1,7 @@
 package com.breweetristan.swing;
 
+import com.breweetristan.calculations.CalculationClass;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,7 @@ import java.awt.event.ActionListener;
 public class MainWindow implements ActionListener {
 
     private JFrame window;
+    private boolean equalsBtnPressed = false;
 
     /*
     Constructor
@@ -98,8 +101,17 @@ public class MainWindow implements ActionListener {
         btnDivide.addActionListener(this);
 
         /*
-        The equals button needs its own ActionListener
+        The entered equation is processed by the CalculationClass
+        The output is printed underneath the equation
+        The flag "equalsBtnPressed" is turned on
          */
+        btnEquals.addActionListener(e -> {
+            TextArea txtArea = (TextArea)(window.getContentPane().getComponent(0).getComponentAt(0, 0));
+            String calculationString = txtArea.getText();
+            String output = CalculationClass.start(calculationString);
+            txtArea.setText(txtArea.getText() + "\n" + output);
+            equalsBtnPressed = true;
+        });
 
         centerPanel.add(btnOne);
         centerPanel.add(btnTwo);
@@ -128,11 +140,17 @@ public class MainWindow implements ActionListener {
 
     /*
     This method is called when a button is clicked (except the "equals" button)
+    The text on the button pressed is added to the textField
+    If the "equals" button was pressed right before, then the textField is cleared first
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton source = (JButton)(e.getSource());
         TextArea txtArea = (TextArea)(window.getContentPane().getComponent(0).getComponentAt(0, 0));
+        if (equalsBtnPressed) {
+            txtArea.setText("");
+            equalsBtnPressed = false;
+        }
         txtArea.setText(txtArea.getText() + source.getText());
     }
 }
