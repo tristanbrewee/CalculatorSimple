@@ -8,9 +8,15 @@ public class MainWindow {
 
     /*
     Constructor
-    Set up the default settings for the JFrame
      */
     public MainWindow(){
+        initialize();
+    }
+
+    /*
+    Set all the initial values of the JFrame
+     */
+    private void initialize(){
         window = new JFrame();
         window.setTitle("Simple calculator");
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
