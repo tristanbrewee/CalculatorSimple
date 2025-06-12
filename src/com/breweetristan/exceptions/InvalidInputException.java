@@ -1,4 +1,4 @@
-package exceptions;
+package com.breweetristan.exceptions;
 
 public class InvalidInputException extends Exception{
 

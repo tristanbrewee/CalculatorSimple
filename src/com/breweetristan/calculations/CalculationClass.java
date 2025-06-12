@@ -1,6 +1,6 @@
-package calculations;
+package com.breweetristan.calculations;
 
-import exceptions.NotAnOperationException;
+import com.breweetristan.exceptions.NotAnOperationException;
 
 public class CalculationClass {
 

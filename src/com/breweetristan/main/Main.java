@@ -1,13 +1,16 @@
-package main;
+package com.breweetristan.main;
 
-import calculations.CalculationClass;
-import io.IOClass;
+import com.breweetristan.calculations.CalculationClass;
+import com.breweetristan.io.IOClass;
+import com.breweetristan.swing.Launcher;
 
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        Launcher.launch();
+        /*
         Scanner sc = new Scanner(System.in);
 
         //Getting the first number and checking the input
@@ -33,5 +36,6 @@ public class Main {
 
         //Performing the operation
         System.out.println(CalculationClass.calculate(number1, number2, operation.charAt(0)));
+         */
     }
 }

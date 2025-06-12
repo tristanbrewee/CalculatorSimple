@@ -1,7 +1,7 @@
-package io;
+package com.breweetristan.io;
 
-import exceptions.DotException;
-import exceptions.InvalidInputException;
+import com.breweetristan.exceptions.DotException;
+import com.breweetristan.exceptions.InvalidInputException;
 
 public class IOClass {
 
