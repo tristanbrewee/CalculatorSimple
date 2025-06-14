@@ -10,7 +10,7 @@ public class CalculationClass {
      */
     public static String start(String calculation){
         String output = IOClass.checkInput(calculation);
-        if (output.equals("You can only enter numbers or ., +, -, *, or /"))
+        if (!output.equals(calculation))
             return output;
         return output;
     }
