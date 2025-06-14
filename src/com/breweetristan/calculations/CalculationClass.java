@@ -1,11 +1,18 @@
 package com.breweetristan.calculations;
 
 import com.breweetristan.exceptions.NotAnOperationException;
+import com.breweetristan.io.IOClass;
 
 public class CalculationClass {
 
+    /*
+    This method is the starting point for calculations to be verified and eventually solved
+     */
     public static String start(String calculation){
-        return calculation;
+        String output = IOClass.checkInput(calculation);
+        if (output.equals("You can only enter numbers or ., +, -, *, or /"))
+            return output;
+        return output;
     }
 
     /*

@@ -8,14 +8,15 @@ public class IOClass {
     /*
     This method calls checkIfValidInput(char) and catches the possible Exception
      */
-    public static char checkInput(char input){
+    public static String checkInput(String input){
         try{
-            checkIfValidInput(input);
+            for (int i = 0; i < input.length(); i++){
+                checkIfValidInput(input.charAt(i));
+            }
             return input;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
-        return 0;
     }
 
     /*
