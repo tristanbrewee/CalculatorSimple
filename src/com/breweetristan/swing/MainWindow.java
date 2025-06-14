@@ -108,9 +108,11 @@ public class MainWindow implements ActionListener {
         btnEquals.addActionListener(e -> {
             TextArea txtArea = (TextArea)(window.getContentPane().getComponent(0).getComponentAt(0, 0));
             String calculationString = txtArea.getText();
-            String output = CalculationClass.start(calculationString);
-            txtArea.setText(txtArea.getText() + "\n" + output);
-            equalsBtnPressed = true;
+            if (!equalsBtnPressed){
+                String output = CalculationClass.start(calculationString);
+                txtArea.setText(txtArea.getText() + "\n" + output);
+                equalsBtnPressed = true;
+            }
         });
 
         centerPanel.add(btnOne);
