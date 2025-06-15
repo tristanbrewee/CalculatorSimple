@@ -58,6 +58,9 @@ public class CalculationClass {
                                 calculation.charAt(j - 1) == '+'){
                             indexStart = j;
                             break;
+                        } else {
+                            indexStart = j + 1;
+                            break;
                         }
                     }
                 }
