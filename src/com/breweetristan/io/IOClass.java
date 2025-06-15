@@ -21,31 +21,63 @@ public class IOClass {
 
     /*
     This method check if the given input isn't empty
-    It checks if the given input doesn't start with *, /, or +
-    It checks, when it starts with a -, if it is not followed by a -, +, *, of /
-    It checks if the input doesn't end with -, +, *, or /
+    It checks if the given input doesn't start with *, /, ., or +
+    It checks, when it starts with a -, if it is not followed by a -, +, *, ., of /
+    It checks if the input doesn't end with -, +, *, ., or /
     It checks if there are no symbols followed by other symbols (exception being a second -)
     It checks if there are is a second -, if there isn't a symbol after that
      */
     private static void checkIfValidSyntax(String input){
+        //Empty input check
         if(input.isEmpty())
             throw new NoInputException();
+        //Leading char not +*/. check
         if (input.charAt(0) == '*' ||
                 input.charAt(0) == '/' ||
-                input.charAt(0) == '+')
+                input.charAt(0) == '+' ||
+                input.charAt(0) == '.')
             throw new InvalidSyntaxException();
+        //Input not sole - check
         if (input.charAt(0) == '-'){
             if (input.length() == 1)
                 throw new InvalidSyntaxException();
         }
+        //Final char not /*-+. check
         if (input.charAt(input.length() - 1) == '-' ||
                 input.charAt(input.length() - 1) == '+' ||
                 input.charAt(input.length() - 1) == '*' ||
-                input.charAt(input.length() - 1) == '/')
+                input.charAt(input.length() - 1) == '/' ||
+                input.charAt(input.length() - 1) == '.')
             throw new InvalidSyntaxException();
-        //TODO: It checks, when it starts with a -, if it is not followed by a -, +, *, of /
-        //TODO: It checks if there are no symbols followed by other symbols (exception being a second -)
-        //TODO: It checks if there are is a second -, if there isn't a symbol after that
+        //Leading - not followed by symbol check
+        if (input.charAt(0) == '-')
+            if (input.charAt(1) == '/' ||
+                    input.charAt(1) == '*' ||
+                    input.charAt(1) == '-' ||
+                    input.charAt(1) == '+' ||
+                    input.charAt(1) == '.')
+                throw new InvalidSyntaxException();
+        for (int i = 1; i < input.length(); i++){
+            //Two symbols after eachtother check
+            if (input.charAt(i) == '/' ||
+                    input.charAt(i) == '*' ||
+                    input.charAt(i) == '-' ||
+                    input.charAt(i) == '+'){
+                if (input.charAt(i + 1) == '/' ||
+                        input.charAt(i + 1) == '*' ||
+                        input.charAt(i + 1) == '+' ||
+                        input.charAt(i + 1) == '.')
+                    throw new InvalidSyntaxException();
+                //Negative numbers exception
+                else if (input.charAt(i + 1) == '-')
+                    if (input.charAt(i + 2) == '/' ||
+                            input.charAt(i + 2) == '*' ||
+                            input.charAt(i + 2) == '-' ||
+                            input.charAt(i + 2) == '+' ||
+                            input.charAt(i + 2) == '.')
+                        throw new InvalidSyntaxException();
+            }
+        }
     }
 
     /*
