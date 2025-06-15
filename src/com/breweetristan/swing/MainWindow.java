@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import static java.awt.event.KeyEvent.VK_ENTER;
 
 public class MainWindow implements ActionListener {
 
@@ -44,9 +48,26 @@ public class MainWindow implements ActionListener {
         topPanel.setLayout(new BorderLayout(15, 15));
 
         TextArea textArea = new TextArea();
-        textArea.setEditable(false);
         textArea.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 15));
         topPanel.add(textArea);
+        /*
+        Add a KeyListener so the Enter-key will do the same thing as the equals key
+         */
+        textArea.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+            @Override
+            public void keyPressed(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == VK_ENTER ){
+                    textArea.setText(textArea.getText().replace("\n", ""));
+                    equalsBtnPressed = true;
+                    textArea.setText(CalculationClass.start(textArea.getText()));
+                }
+            }
+        });
 
         window.add(topPanel, BorderLayout.NORTH);
 
