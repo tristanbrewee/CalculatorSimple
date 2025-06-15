@@ -20,28 +20,26 @@ public class CalculationClass {
     It catches possible incorrect input which leads to number1 or number2 not being a number
     It catches possible incorrect input which leads to 'operation' not being a valid operation
      */
-    public static double calculate(String number1, String number2, char operation){
+    public static String calculate(String number1, String number2, char operation){
         double numberA, numberB;
         try{
             numberA = Double.parseDouble(number1);
             numberB = Double.parseDouble(number2);
         }catch (Exception e){
-            System.out.println(e.getMessage());
-            return -1;
+            return e.getMessage();
         }
         try{
             if (operation == '+')
-                return add(numberA, numberB);
+                return String.valueOf(add(numberA, numberB));
             if (operation == '-')
-                return subtract(numberA, numberB);
+                return String.valueOf(subtract(numberA, numberB));
             if (operation == '*')
-                return multiply(numberA, numberB);
+                return String.valueOf(multiply(numberA, numberB));
             if (operation == '/')
-                return divide(numberA, numberB);
+                return String.valueOf(divide(numberA, numberB));
             throw new NotAnOperationException();
         }catch (Exception e){
-            System.out.println(e.getMessage());
-            return -1;
+            return e.getMessage();
         }
     }
 
