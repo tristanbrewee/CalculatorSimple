@@ -79,6 +79,11 @@ public class CalculationClass {
                 //Calculate the found operation on the found 2 numbers
                 number1 = calculation.substring(indexStart, i);
                 number2 = calculation.substring(i + 1, indexEnd);
+                //Test for yo many dots
+                if (!number1.equals(IOClass.checkNumberOfDots(number1)))
+                    return IOClass.checkNumberOfDots(number1);
+                if (!number2.equals(IOClass.checkNumberOfDots(number2)))
+                    return IOClass.checkNumberOfDots(number2);
                 String result = calculate(number1, number2, calculation.charAt(i));
                 //Replace the solved part of the calculation and reset the loop
                 calculation = calculation.substring(0, indexStart) + result + calculation.substring(indexEnd);
